@@ -1,9 +1,9 @@
 {
-  "name": "alarm",
-  "description": "real time alarm clock",
+  "name": "weather",
+  "description": "weather api practice",
   "main": "build.js",
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/gmkhanna/TEMPLATE---js-Alarm-Clock",
   "ignore": [
     "**/.*",
     "node_modules",

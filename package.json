@@ -1,5 +1,5 @@
 {
-  "name": "weatherApp",
+  "name": "doc-api",
   "version": "1.0.0",
   "description": "real time alarm clock",
   "main": "build.js",
@@ -22,5 +22,19 @@
     "gulp-util": "^3.0.8",
     "jshint": "^2.9.4",
     "vinyl-source-stream": "^1.1.0"
-  }
+  },
+  "dependencies": {
+    "browser-sync": "^2.18.8",
+    "browserify": "^14.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmkhanna/DocAPI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gmkhanna/DocAPI/issues"
+  },
+  "homepage": "https://github.com/gmkhanna/DocAPI#readme"
 }

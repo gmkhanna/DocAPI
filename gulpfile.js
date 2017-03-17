@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var utilities = require('gulp-util');
 var del = require('del');
 var jshint = require('gulp-jshint');
+var buildProduction = utilities.env.production;
 //this package returns a function. we tell that function to immediately run by placing empty parenthesis after to "require: require('bower-files')();" returns all files in bower.json
 var lib = require('bower-files')({
   //pass object into initial call to the bower-files package with some initialization settings in it in order to tell the bower-files package where to find the Bootstrap files we're interested in. special case with bootstrap
@@ -25,9 +26,34 @@ var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
-var buildProduction = utilities.env.production;
 
 // (nameOfTask to call later, function to run when we tell gulp to run task)
+
+gulp.task('jshint', function(){
+    return gulp.src(['js/*.js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('concatInterface', function(){
+    return gulp.src(['js/*-interface.js'])
+    .pipe(concat('allConcat.js'))
+    .pipe(gulp.dest('./tmp'));
+});
+
+gulp.task('jsBrowserify', ['concatInterface'], function() {
+    return browserify({ entries: ['./tmp/allConcat.js'] })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./build/js'));
+});
+
+
+gulp.task('minifyScripts', ['jsBrowserify'], function () {
+    return gulp.src("./build/js/app.js")
+    .pipe(uglify())
+    .pipe(gulp.dest("./build/js"));
+});
 
 //the order of dependencies is ignored so we can't use this kind of method without callback function if we care about one task running before another
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
@@ -47,24 +73,6 @@ gulp.task('bowerCSS', function(){
     .pipe(gulp.dest('./build/css'));
 });
 
-gulp.task('jsBrowserify', ['concatInterface'], function() {
-  return browserify({ entries: ['./tmp/allConcat.js'] })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./build/js'));
-});
-
-gulp.task('concatInterface', function() {
-  return gulp.src(['./js/*-interface.js'])
-    .pipe(concat('allConcat.js'))
-    .pipe(gulp.dest('./tmp'));
-});
-
-gulp.task('minifyScripts', ['jsBrowserify'], function () {
-  return gulp.src("./build/js/app.js")
-  .pipe(uglify())
-  .pipe(gulp.dest("./build/js"));
-});
 
 gulp.task("build", ['clean'], function(){
   if(buildProduction) {
@@ -81,11 +89,6 @@ gulp.task("clean", function() {
   return del(['build', 'tmp']);
 });
 
-gulp.task('jshint', function(){
-  return gulp.src(['js/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
 
 gulp.task('serve', function() {
   browserSync.init({

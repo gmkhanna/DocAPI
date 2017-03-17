@@ -1,9 +1,9 @@
 {
-  "name": "weather",
-  "description": "weather api practice",
+  "name": "doc-api",
+  "description": "Find local docs upon medical condition",
   "main": "build.js",
   "license": "ISC",
-  "homepage": "https://github.com/gmkhanna/TEMPLATE---js-Alarm-Clock",
+  "homepage": "https://github.com/gmkhanna/DocAPI",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,5 +15,9 @@
     "jquery": "^3.1.1",
     "bootstrap": "^3.3.7",
     "moment": "^2.17.1"
-  }
+  },
+  "authors": [
+    "Grinil Khanna <gmkhanna@gmail.com>"
+  ],
+  "private": true
 }

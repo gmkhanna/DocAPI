@@ -1,12 +1,14 @@
 // Required items here (if applicable)
+var Doctors = require("./../docAPI.js").DoctorModule;
 
 //Ready the Docum.
 $(document).ready(function() {
-    $("#medIssue-search").submit(function(event) {
-        event.prevenDefault();
-        val medCond = $("#medIssue").val();
+    event.prevenDefault();
+    $("#search-button").submit(function(event) {
+        var medCond = $("#medIssue").val();
         $("#medIssue").val("");
-        Doctors.nearby(medCond);
+        var DocList = new Doctors();
+        DocList.nearby(medCond);
     });
 
 });

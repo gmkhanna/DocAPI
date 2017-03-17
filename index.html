@@ -12,13 +12,18 @@
     <div class="container">
       <h2>Doctor's Nearby</h2>
       <div class="box">
+          <form id="medIssue-search">
+              <label for="medIssue">What Medical Issue do You Want to Inquire About?</label>
+              <input type="text" name="name" id="medIssue">
+              <button class="button" type="button" name="button" id="search-button">Search Nearby Doctors</button>
+          </form>
 
-      <label for="medIssue">What Medical Issue do You Want to Inquire About?</label>
-      <input type="text" name="name" id="medIssue">
-      <button class="button" type="button" name="button" id="search-button">Search Nearby Doctors</button>
     </div>
   </div>
-    <div class="doctor-display">
+    <div class="doc-display-area">
+        <ul id="doctors-listed">
+
+        </ul>
 
     </div>
   </body>

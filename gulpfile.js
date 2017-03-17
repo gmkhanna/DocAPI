@@ -56,9 +56,8 @@ gulp.task('minifyScripts', ['jsBrowserify'], function () {
 });
 
 //the order of dependencies is ignored so we can't use this kind of method without callback function if we care about one task running before another
-gulp.task('bower', ['bowerJS', 'bowerCSS']);
 
-gulp.task('bowerJS', function() {
+gulp.task('jsBower', function() {
   //gulp.src pulls in all JS files and outputs one concatenated, minified file called vendor.js that we will load in our index.html. ext(js) filters out only the js files
   return gulp.src(lib.ext('js').files)
     .pipe(concat('vendor.min.js'))
@@ -67,12 +66,18 @@ gulp.task('bowerJS', function() {
 });
 
 //ext(css) only gets the files that end in .css
-gulp.task('bowerCSS', function(){
+gulp.task('cssBower', function(){
   return gulp.src(lib.ext('css').files)
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest('./build/css'));
 });
 
+gulp.task('bower', ['jsBower', 'cssBower']);
+
+gulp.task("clean", function() {
+    //delete the entire build and tmp folders. how do we delete a file at a time?
+    return del(['build', 'tmp']);
+});
 
 gulp.task("build", ['clean'], function(){
   if(buildProduction) {
@@ -84,13 +89,7 @@ gulp.task("build", ['clean'], function(){
   gulp.start('cssBuild');
 });
 
-gulp.task("clean", function() {
-  //delete the entire build and tmp folders. how do we delete a file at a time?
-  return del(['build', 'tmp']);
-});
-
-
-gulp.task('serve', function() {
+gulp.task('serve', ['build'], function() {
   browserSync.init({
     server: {
       //starting point is in home directory and the starting place for the app is index.html
@@ -102,7 +101,7 @@ gulp.task('serve', function() {
   gulp.watch(['js/*.js'], ['jsBuild']);
   gulp.watch(['bower.json'], ['bowerBuild']);
   gulp.watch(['*.html'], ['htmlBuild']);
-  gulp.watch(['scss/*.css'], ['cssBuild']);
+  gulp.watch(['scss/*.scss'], ['cssBuild']);
 });
 
 //Write tasks per "watches" from bower sync  serve task (above)

@@ -1,5 +1,5 @@
 // Required items here (if applicable)
-var Doctors = require("./../docAPI.js").DoctorModule;
+var Doctors = require("./../js/docAPI.js").DoctorModule;
 
 //Ready the Docum.
 $(document).ready(function() {

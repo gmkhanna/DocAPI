@@ -111,7 +111,7 @@ gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function () {
 });
 
 gulp.task('bowerBuild', ['bower'], function() {
-  bowerSync.reload();
+  browserSync.reload();
 });
 
 gulp.task('htmlBuild', function() {

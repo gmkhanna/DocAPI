@@ -28,10 +28,7 @@ Doctors.prototype.nearby = function(medicalIssue) {
         $('#amount-doctors').text("Doctors total in your area: " + amountDoctors);
 
         for (var i = 0; i < dataArray.length; i++) {
-            $('#doc-info').append("<li>" + dataArray[i].profile.first_name + "</li>" + "<li>" + dataArray[i].profile.last_name + "</li>" + "<li>" + dataArray[i].profile.title + "</li>");
-
-
-            console.log(dataArray[i].profile.first_name);
+            $('#name').text(dataArray[i].profile.first_name + " " + dataArray[i].profile.last_name + " " + dataArray[i].profile.title + "<br>" + dataArray[i].profile.bio);
         }
     })
     .fail(function(error) {

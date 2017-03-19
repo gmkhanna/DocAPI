@@ -9,25 +9,35 @@
     <title>Doc API</title>
   </head>
   <body>
-    <div class="container">
-      <h2>Doctor's Nearby</h2>
-      <div class="box">
-          <form id="medIssue-search">
-              <label for="medIssue">What Medical Issue do You Want to Inquire About?</label>
-              <input type="text" name="name" id="medIssue">
-              <button class="button" type="submit" id="search-button">Search Nearby Doctors</button>
-          </form>
+      <header>
+          <h1>My doctor is <span id="caring"> caring,</span><span id="exp">  experienced,</span><span id="here">  and   here.</span></h1>
+      </header>
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-6"></div>
+              <div class="col-sm-6" id="search">
 
-    </div>
-    <div class="doc-display-area">
-        <div id="amount-doctors">
+              <form id="medIssue-search">
+                  <label for="medIssue">What Medical Issue do You Want to Inquire About?</label>
+                  <input type="text" name="name" id="medIssue">
+                  <button class="button" type="submit" id="search-button">Search Nearby Doctors</button>
+              </form>
+          </div>
+      </div>
+      <br><br>
 
-        </div>
-        <div class="doc-info">
-            <p id="name"></p>
-        </div>
+      <div class="row doc">
+          <div class="row col-sm-3 name">
 
-    </div>
-</div>
-  </body>
+          </div>
+          <div class="col-sm-6 bio">
+
+          </div>
+
+      </div>
+
+
+
+  </div>
+</body>
 </html>

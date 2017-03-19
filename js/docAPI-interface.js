@@ -17,6 +17,8 @@ $(document).ready(function() {
     var DocList = new Doctors();
     $('#medIssue-search').submit(function(event) {
         event.preventDefault();
+        $(".name").empty();
+        $(".bio").empty();
         var medCond = $('#medIssue').val();
         $('#medIssue').val("");
         DocList.nearby(medCond);

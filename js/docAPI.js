@@ -25,9 +25,8 @@ Doctors.prototype.nearby = function(medicalIssue) {
             pracList.push(dataArray[i].specialties[0].name);
         }
         for (var i = 0; i < nameList.length; i++) {
-            $('.doc-row').append();
-            $('.name').append("<h3>" + nameList[i] + "</h3>");
-            $('.bio').append("<ul>" + "<li>" + "Practice: " + pracList[i] + " - " + specList[i] + "</li>");
+            $('.name').append("<h3>" + nameList[i] + "</h3>" + "<hr>");
+            $('.bio').append("<ul>" + "<li>" + "Practice: " + pracList[i] + " - " + specList[i] + "</li>" + "<hr>");
             // $('.spec').append("<p>" + specList[i] + "</p>");
         }
     })
